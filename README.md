@@ -1,0 +1,7 @@
+- react hook form
+- multi-step (with router)
+- validation (zod)
+- dependent field
+- adding fields
+- upload files
+- overview before confirming
