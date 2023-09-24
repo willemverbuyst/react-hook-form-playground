@@ -1,15 +1,23 @@
+import { StateMachineProvider } from "little-state-machine";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import StepOne from "./components/StepOne";
 import StepTwo from "./components/StepTwo";
 
 function App() {
   return (
-    <main className="bg-slate-800 text-slate-100 p-4 h-screen flex justify-center">
-      <div className="flex flex-col items-center">
-        <h1 className="text-5xl py-5">React Form Hook Playground</h1>
-        <StepOne />
-        <StepTwo />
-      </div>
-    </main>
+    <StateMachineProvider>
+      <main className="bg-slate-800 text-slate-100 p-4 h-screen flex justify-center">
+        <div className="flex flex-col items-center">
+          <h1 className="text-5xl py-5">React Form Hook Playground</h1>
+          <Router>
+            <Routes>
+              <Route path="/step1" element={<StepOne />} />
+              <Route path="/step2" element={<StepTwo />} />
+            </Routes>
+          </Router>
+        </div>
+      </main>
+    </StateMachineProvider>
   );
 }
 
