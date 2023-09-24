@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function StepTwo() {
   return (
     <form className="w-48">
@@ -31,10 +33,19 @@ function StepTwo() {
           className="bg-slate-100 rounded px-2 py-1 outline-none text-slate-800"
         />
       </section>
-      <section className="py-4 text-right">
-        <button className="border border-slate-300 text-slate-300 px-2 py-1 rounded hover:bg-slate-700 focus-within:bg-slate-700 outline-none">
+      <section className="py-4 flex justify-end gap-2">
+        <Link
+          to="/"
+          className="border border-slate-300 text-slate-300 px-2 py-1 rounded hover:bg-slate-700 focus-within:bg-slate-700 outline-none"
+        >
+          Back
+        </Link>
+        <Link
+          to="/"
+          className="border border-slate-300 text-slate-300 px-2 py-1 rounded hover:bg-slate-700 focus-within:bg-slate-700 outline-none"
+        >
           Next
-        </button>
+        </Link>
       </section>
     </form>
   );

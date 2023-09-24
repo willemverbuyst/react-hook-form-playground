@@ -1,5 +1,6 @@
 import { StateMachineProvider } from "little-state-machine";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Start from "./components/Start";
 import StepOne from "./components/StepOne";
 import StepTwo from "./components/StepTwo";
 
@@ -11,6 +12,7 @@ function App() {
           <h1 className="text-5xl py-5">React Form Hook Playground</h1>
           <Router>
             <Routes>
+              <Route path="/" element={<Start />} />
               <Route path="/step1" element={<StepOne />} />
               <Route path="/step2" element={<StepTwo />} />
             </Routes>
