@@ -2,6 +2,7 @@ import { useStateMachine } from "little-state-machine";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { updateFirstAndLastName } from "../actions";
+import Button from "./Button";
 
 type FormValues = {
   firstName: string;
@@ -19,8 +20,8 @@ function StepOne() {
     navigate("/step2");
   };
 
-  const goBack = () => {
-    navigate("/");
+  const handleGoBack = () => {
+    navigate(-1);
   };
 
   return (
@@ -48,30 +49,8 @@ function StepOne() {
         />
       </section>
       <section className="py-4 flex justify-end gap-2">
-        <button
-          onClick={() => goBack()}
-          className="border border-slate-300 text-slate-300 px-2 py-1 rounded hover:bg-slate-700 focus-within:bg-slate-700 outline-none"
-        >
-          Back
-        </button>
-        <button
-          type="submit"
-          className="border border-slate-300 text-slate-300 px-2 py-1 rounded hover:bg-slate-700 focus-within:bg-slate-700 outline-none"
-        >
-          Next
-        </button>
-        {/* <Link
-          to="/"
-          className="border border-slate-300 text-slate-300 px-2 py-1 rounded hover:bg-slate-700 focus-within:bg-slate-700 outline-none"
-        >
-          Back
-        </Link>
-        <Link
-          to="/step2"
-          className="border border-slate-300 text-slate-300 px-2 py-1 rounded hover:bg-slate-700 focus-within:bg-slate-700 outline-none"
-        >
-          Next
-        </Link> */}
+        <Button caption="Back" handleClick={handleGoBack} />
+        <Button caption="Next" type="submit" />
       </section>
     </form>
   );

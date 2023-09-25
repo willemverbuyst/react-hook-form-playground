@@ -1,6 +1,13 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Button from "./Button";
 
 function StepTwo() {
+  const navigate = useNavigate();
+
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
   return (
     <form className="w-48">
       <section className="flex flex-col py-4">
@@ -34,18 +41,8 @@ function StepTwo() {
         />
       </section>
       <section className="py-4 flex justify-end gap-2">
-        <Link
-          to="/"
-          className="border border-slate-300 text-slate-300 px-2 py-1 rounded hover:bg-slate-700 focus-within:bg-slate-700 outline-none"
-        >
-          Back
-        </Link>
-        <Link
-          to="/"
-          className="border border-slate-300 text-slate-300 px-2 py-1 rounded hover:bg-slate-700 focus-within:bg-slate-700 outline-none"
-        >
-          Next
-        </Link>
+        <Button caption="Back" handleClick={handleGoBack} />
+        <Button caption="Next" type="submit" />
       </section>
     </form>
   );
