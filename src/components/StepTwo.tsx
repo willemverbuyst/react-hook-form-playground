@@ -1,21 +1,35 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useStateMachine } from "little-state-machine";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { z } from "zod";
 import { updateStepTwo } from "../actions";
 import Button from "./Button";
+import FormField from "./FormField";
 
-type FormValues = {
-  email: string;
-  phoneNumberCheckbox: boolean;
-  phoneNumber: string;
-};
+const stepTwoFormValues = z.object({
+  email: z
+    .string()
+    .min(1, { message: "email is required" })
+    .email("this is not a valid email."),
+  phoneNumberCheckbox: z.boolean(),
+  phoneNumber: z.string(),
+});
+
+type StepTwoFormvalues = z.infer<typeof stepTwoFormValues>;
 
 function StepTwo() {
   const navigate = useNavigate();
-  const { handleSubmit, register } = useForm<FormValues>();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm<StepTwoFormvalues>({
+    resolver: zodResolver(stepTwoFormValues),
+  });
   const { actions } = useStateMachine({ updateStepTwo });
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = (data: StepTwoFormvalues) => {
     console.log(data);
     actions.updateStepTwo(data);
     navigate("/result");
@@ -27,17 +41,11 @@ function StepTwo() {
 
   return (
     <form className="w-48" onSubmit={handleSubmit(onSubmit)}>
-      <section className="flex flex-col py-4">
-        <label htmlFor="email" className="py-1">
-          Email
-        </label>
-        <input
-          {...register("email")}
-          id="email"
-          type="text"
-          className="bg-slate-100 rounded px-2 py-1 outline-none text-slate-800"
-        />
-      </section>
+      <FormField
+        label="Email"
+        error={errors.email}
+        formRegister={register("email")}
+      />
       <section className="flex py-4 gap-2">
         <input
           {...register("phoneNumberCheckbox")}
@@ -49,17 +57,11 @@ function StepTwo() {
           Phone Number?
         </label>
       </section>
-      <section className="flex flex-col py-4">
-        <label htmlFor="phone-number" className="py-1">
-          Phone Number
-        </label>
-        <input
-          {...register("phoneNumber")}
-          id="phone-number"
-          type="text"
-          className="bg-slate-100 rounded px-2 py-1 outline-none text-slate-800"
-        />
-      </section>
+      <FormField
+        label="Phone Number"
+        error={errors.phoneNumber}
+        formRegister={register("phoneNumber")}
+      />
       <section className="py-4 flex justify-end gap-2">
         <Button caption="Back" handleClick={handleGoBack} />
         <Button caption="Next" type="submit" />
