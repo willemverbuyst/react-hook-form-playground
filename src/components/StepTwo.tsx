@@ -18,7 +18,7 @@ function StepTwo() {
   const onSubmit = (data: FormValues) => {
     console.log(data);
     actions.updateStepTwo(data);
-    navigate("/step1");
+    navigate("/result");
   };
 
   const handleGoBack = () => {

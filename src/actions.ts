@@ -10,6 +10,7 @@ export function updateStepOne(
   return {
     ...state,
     data: {
+      ...state.data,
       ...payload,
     },
   };
@@ -26,6 +27,7 @@ export function updateStepTwo(
   return {
     ...state,
     data: {
+      ...state.data,
       ...payload,
     },
   };
