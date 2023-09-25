@@ -6,6 +6,7 @@ import { z } from "zod";
 import { updateStepTwo } from "../actions";
 import Button from "./Button";
 import FormField from "./FormField";
+import FormFieldCheckbox from "./FormFieldCheckbox";
 
 const stepTwoFormValues = z.object({
   email: z
@@ -46,17 +47,10 @@ function StepTwo() {
         error={errors.email}
         formRegister={register("email")}
       />
-      <section className="flex py-4 gap-2">
-        <input
-          {...register("phoneNumberCheckbox")}
-          id="phone-number-checkbox"
-          type="checkbox"
-          className="bg-slate-100 rounded px-2 py-1 outline-none text-slate-800"
-        />
-        <label htmlFor="phone-number-checkbox" className="py-1">
-          Phone Number?
-        </label>
-      </section>
+      <FormFieldCheckbox
+        label="Phone Number?"
+        formRegister={register("phoneNumberCheckbox")}
+      />
       <FormField
         label="Phone Number"
         error={errors.phoneNumber}
