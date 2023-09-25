@@ -1,10 +1,26 @@
 import { GlobalState } from "little-state-machine";
 
-export function updateFirstAndLastName(
+export function updateStepOne(
   state: GlobalState,
   payload: {
     firstName: string;
     lastName: string;
+  }
+) {
+  return {
+    ...state,
+    data: {
+      ...payload,
+    },
+  };
+}
+
+export function updateStepTwo(
+  state: GlobalState,
+  payload: {
+    email: string;
+    phoneNumberCheckbox: boolean;
+    phoneNumber: string;
   }
 ) {
   return {

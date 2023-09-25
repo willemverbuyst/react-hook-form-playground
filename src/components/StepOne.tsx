@@ -1,7 +1,7 @@
 import { useStateMachine } from "little-state-machine";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { updateFirstAndLastName } from "../actions";
+import { updateStepOne } from "../actions";
 import Button from "./Button";
 
 type FormValues = {
@@ -12,11 +12,11 @@ type FormValues = {
 function StepOne() {
   const navigate = useNavigate();
   const { handleSubmit, register } = useForm<FormValues>();
-  const { actions } = useStateMachine({ updateFirstAndLastName });
+  const { actions } = useStateMachine({ updateStepOne });
 
   const onSubmit = (data: FormValues) => {
     console.log(data);
-    actions.updateFirstAndLastName(data);
+    actions.updateStepOne(data);
     navigate("/step2");
   };
 
