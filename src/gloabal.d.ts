@@ -8,6 +8,7 @@ declare module "little-state-machine" {
       email: string;
       hasPhoneNumber: boolean;
       phoneNumber: string;
+      files: FileList;
     };
   }
 }

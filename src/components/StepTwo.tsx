@@ -38,7 +38,7 @@ function StepTwo() {
 
   const onSubmit = (data: StepTwoFormvalues) => {
     actions.updateStepTwo(data);
-    navigate("/result");
+    navigate("/step3");
   };
 
   const handleGoBack = () => {
@@ -49,7 +49,7 @@ function StepTwo() {
 
   return (
     <section>
-      <h2 className="text-4xl text-center">Step 2</h2>
+      <h2 className="text-4xl text-center py-4">Step 2</h2>
       <form className="w-48" onSubmit={handleSubmit(onSubmit)}>
         <FormField
           label="Email"

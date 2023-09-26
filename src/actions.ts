@@ -32,3 +32,18 @@ export function updateStepTwo(
     },
   };
 }
+
+export function updateStepThree(
+  state: GlobalState,
+  payload: {
+    files: FileList;
+  }
+) {
+  return {
+    ...state,
+    data: {
+      ...state.data,
+      ...payload,
+    },
+  };
+}

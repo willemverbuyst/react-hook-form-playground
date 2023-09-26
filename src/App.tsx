@@ -7,10 +7,11 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Result from "./components/Result";
 import Start from "./components/Start";
 import StepOne from "./components/StepOne";
+import StepThree from "./components/StepThree";
 import StepTwo from "./components/StepTwo";
 
 function log(store: GlobalState) {
-  console.table(store);
+  console.table(store.data);
   return store;
 }
 
@@ -22,6 +23,7 @@ createStore(
       email: "",
       hasPhoneNumber: false,
       phoneNumber: "",
+      files: [],
     },
   },
   {
@@ -41,6 +43,7 @@ function App() {
               <Route path="/" element={<Start />} />
               <Route path="/step1" element={<StepOne />} />
               <Route path="/step2" element={<StepTwo />} />
+              <Route path="/step3" element={<StepThree />} />
               <Route path="/result" element={<Result />} />
             </Routes>
           </Router>

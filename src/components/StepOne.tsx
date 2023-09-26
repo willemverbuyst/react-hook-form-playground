@@ -40,7 +40,7 @@ function StepOne() {
 
   return (
     <section>
-      <h2 className="text-4xl text-center">Step 1</h2>
+      <h2 className="text-4xl text-center py-4">Step 1</h2>
       <form className="w-48" onSubmit={handleSubmit(onSubmit)}>
         <FormField
           label="First Name"

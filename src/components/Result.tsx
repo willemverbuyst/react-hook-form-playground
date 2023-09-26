@@ -20,7 +20,7 @@ function Result() {
       <section className="py-3">
         {Object.entries(state.data || {}).map(([key, value], i) => (
           <p key={i}>
-            {key}: {typeof value === "boolean" ? JSON.stringify(value) : value}
+            {key}: {JSON.stringify(value)}
           </p>
         ))}
       </section>
