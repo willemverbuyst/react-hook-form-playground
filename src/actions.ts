@@ -20,7 +20,7 @@ export function updateStepTwo(
   state: GlobalState,
   payload: {
     email: string;
-    phoneNumberCheckbox: boolean;
+    userHasPhone: boolean;
     phoneNumber: string;
   }
 ) {

@@ -11,16 +11,18 @@ function Result() {
   };
 
   return (
-    <section className="w-48 flex flex-col py-4">
-      <h2 className="text-3xl py-3">Result</h2>
-      <section className="py-3">
+    <section>
+      <h2 className="text-4xl text-centers">Result</h2>
+      <section className="w-48 py-3">
         {Object.entries(state.data).map(([key, value], i) => (
           <p key={i}>
             {key}: {value}
           </p>
         ))}
       </section>
-      <Button caption="back" handleClick={handleGoBack} />
+      <section className="py-4 flex justify-end gap-2">
+        <Button caption="back" handleClick={handleGoBack} />
+      </section>
     </section>
   );
 }

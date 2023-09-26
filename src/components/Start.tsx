@@ -9,7 +9,7 @@ function Start() {
   };
 
   return (
-    <section>
+    <section className="w-48 flex flex-col py-4">
       <Button caption="Start" handleClick={startForm} />
     </section>
   );

@@ -34,22 +34,25 @@ function StepOne() {
   };
 
   return (
-    <form className="w-48" onSubmit={handleSubmit(onSubmit)}>
-      <FormField
-        label="First Name"
-        error={errors.firstName}
-        formRegister={register("firstName")}
-      />
-      <FormField
-        label="Last Name"
-        error={errors.lastName}
-        formRegister={register("lastName")}
-      />
-      <section className="py-4 flex justify-end gap-2">
-        <Button caption="Back" handleClick={handleGoBack} />
-        <Button caption="Next" type="submit" />
-      </section>
-    </form>
+    <section>
+      <h2 className="text-4xl text-center">Step 1</h2>
+      <form className="w-48" onSubmit={handleSubmit(onSubmit)}>
+        <FormField
+          label="First Name"
+          error={errors.firstName}
+          formRegister={register("firstName")}
+        />
+        <FormField
+          label="Last Name"
+          error={errors.lastName}
+          formRegister={register("lastName")}
+        />
+        <section className="py-4 flex justify-end gap-2">
+          <Button caption="Back" handleClick={handleGoBack} />
+          <Button caption="Next" type="submit" />
+        </section>
+      </form>
+    </section>
   );
 }
 

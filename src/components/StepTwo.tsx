@@ -13,7 +13,7 @@ const stepTwoFormValues = z.object({
     .string()
     .min(1, { message: "email is required" })
     .email("this is not a valid email."),
-  phoneNumberCheckbox: z.boolean(),
+  userHasPhone: z.boolean(),
   phoneNumber: z.string(),
 });
 
@@ -25,8 +25,14 @@ function StepTwo() {
     handleSubmit,
     register,
     formState: { errors },
+    watch,
   } = useForm<StepTwoFormvalues>({
     resolver: zodResolver(stepTwoFormValues),
+    defaultValues: {
+      email: "",
+      userHasPhone: false,
+      phoneNumber: "",
+    },
   });
   const { actions } = useStateMachine({ updateStepTwo });
 
@@ -40,27 +46,34 @@ function StepTwo() {
     navigate(-1);
   };
 
+  const hasPhone = watch("userHasPhone");
+
   return (
-    <form className="w-48" onSubmit={handleSubmit(onSubmit)}>
-      <FormField
-        label="Email"
-        error={errors.email}
-        formRegister={register("email")}
-      />
-      <FormFieldCheckbox
-        label="Phone Number?"
-        formRegister={register("phoneNumberCheckbox")}
-      />
-      <FormField
-        label="Phone Number"
-        error={errors.phoneNumber}
-        formRegister={register("phoneNumber")}
-      />
-      <section className="py-4 flex justify-end gap-2">
-        <Button caption="Back" handleClick={handleGoBack} />
-        <Button caption="Next" type="submit" />
-      </section>
-    </form>
+    <section>
+      <h2 className="text-4xl text-center">Step 2</h2>
+      <form className="w-48" onSubmit={handleSubmit(onSubmit)}>
+        <FormField
+          label="Email"
+          error={errors.email}
+          formRegister={register("email")}
+        />
+        <FormFieldCheckbox
+          label="Phone Number?"
+          formRegister={register("userHasPhone")}
+        />
+        {hasPhone && (
+          <FormField
+            label="Phone Number"
+            error={errors.phoneNumber}
+            formRegister={register("phoneNumber")}
+          />
+        )}
+        <section className="py-4 flex justify-end gap-2">
+          <Button caption="Back" handleClick={handleGoBack} />
+          <Button caption="Next" type="submit" />
+        </section>
+      </form>
+    </section>
   );
 }
 
