@@ -10,6 +10,10 @@ function Result() {
     navigate(-1);
   };
 
+  const handleGoToStart = () => {
+    navigate("/");
+  };
+
   return (
     <section>
       <h2 className="text-4xl text-centers">Result</h2>
@@ -22,6 +26,7 @@ function Result() {
       </section>
       <section className="py-4 flex justify-end gap-2">
         <Button caption="back" handleClick={handleGoBack} />
+        <Button caption="done" handleClick={handleGoToStart} />
       </section>
     </section>
   );
