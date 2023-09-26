@@ -1,9 +1,34 @@
-import { StateMachineProvider } from "little-state-machine";
+import {
+  GlobalState,
+  StateMachineProvider,
+  createStore,
+} from "little-state-machine";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Result from "./components/Result";
 import Start from "./components/Start";
 import StepOne from "./components/StepOne";
 import StepTwo from "./components/StepTwo";
+
+function log(store: GlobalState) {
+  console.table(store);
+  return store;
+}
+
+createStore(
+  {
+    data: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      hasPhoneNumber: false,
+      phoneNumber: "",
+    },
+  },
+  {
+    middleWares: [log],
+    persist: "none", // use "action" to persit data
+  }
+);
 
 function App() {
   return (

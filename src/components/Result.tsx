@@ -13,10 +13,10 @@ function Result() {
   return (
     <section>
       <h2 className="text-4xl text-centers">Result</h2>
-      <section className="w-48 py-3">
-        {Object.entries(state.data).map(([key, value], i) => (
+      <section className="py-3">
+        {Object.entries(state.data || {}).map(([key, value], i) => (
           <p key={i}>
-            {key}: {value}
+            {key}: {typeof value === "boolean" ? JSON.stringify(value) : value}
           </p>
         ))}
       </section>

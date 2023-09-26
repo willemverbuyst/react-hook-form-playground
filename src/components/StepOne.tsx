@@ -15,16 +15,21 @@ const stepOneFormValues = z.object({
 type StepOneFormvalues = z.infer<typeof stepOneFormValues>;
 
 function StepOne() {
+  const { actions, state } = useStateMachine({ updateStepOne });
   const navigate = useNavigate();
   const {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<StepOneFormvalues>({ resolver: zodResolver(stepOneFormValues) });
-  const { actions } = useStateMachine({ updateStepOne });
+  } = useForm<StepOneFormvalues>({
+    resolver: zodResolver(stepOneFormValues),
+    defaultValues: {
+      firstName: state.data.firstName,
+      lastName: state.data.lastName,
+    },
+  });
 
   const onSubmit = (data: StepOneFormvalues) => {
-    console.log(data);
     actions.updateStepOne(data);
     navigate("/step2");
   };

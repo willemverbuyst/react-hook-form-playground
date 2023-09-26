@@ -13,13 +13,14 @@ const stepTwoFormValues = z.object({
     .string()
     .min(1, { message: "email is required" })
     .email("this is not a valid email."),
-  userHasPhone: z.boolean(),
+  hasPhoneNumber: z.boolean(),
   phoneNumber: z.string(),
 });
 
 type StepTwoFormvalues = z.infer<typeof stepTwoFormValues>;
 
 function StepTwo() {
+  const { actions, state } = useStateMachine({ updateStepTwo });
   const navigate = useNavigate();
   const {
     handleSubmit,
@@ -29,15 +30,13 @@ function StepTwo() {
   } = useForm<StepTwoFormvalues>({
     resolver: zodResolver(stepTwoFormValues),
     defaultValues: {
-      email: "",
-      userHasPhone: false,
-      phoneNumber: "",
+      email: state.data.email,
+      hasPhoneNumber: state.data.hasPhoneNumber,
+      phoneNumber: state.data.phoneNumber,
     },
   });
-  const { actions } = useStateMachine({ updateStepTwo });
 
   const onSubmit = (data: StepTwoFormvalues) => {
-    console.log(data);
     actions.updateStepTwo(data);
     navigate("/result");
   };
@@ -46,7 +45,7 @@ function StepTwo() {
     navigate(-1);
   };
 
-  const hasPhone = watch("userHasPhone");
+  const hasPhone = watch("hasPhoneNumber");
 
   return (
     <section>
@@ -59,7 +58,7 @@ function StepTwo() {
         />
         <FormFieldCheckbox
           label="Phone Number?"
-          formRegister={register("userHasPhone")}
+          formRegister={register("hasPhoneNumber")}
         />
         {hasPhone && (
           <FormField

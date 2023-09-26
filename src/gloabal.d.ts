@@ -6,7 +6,7 @@ declare module "little-state-machine" {
       firstName: string;
       lastName: string;
       email: string;
-      phoneNumberCheckbox: boolean;
+      hasPhoneNumber: boolean;
       phoneNumber: string;
     };
   }
