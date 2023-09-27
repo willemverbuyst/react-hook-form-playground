@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { updateStepTwo } from "../actions";
+import BackButton from "./BackButton";
 import Button from "./Button";
 import FormField from "./FormField";
 import FormFieldCheckbox from "./FormFieldCheckbox";
@@ -41,10 +42,6 @@ function Step2() {
     navigate("/step3");
   };
 
-  const handleGoBack = () => {
-    navigate(-1);
-  };
-
   const hasPhone = watch("hasPhoneNumber");
 
   return (
@@ -68,7 +65,7 @@ function Step2() {
           />
         )}
         <section className="py-4 flex justify-end gap-2">
-          <Button caption="Back" handleClick={handleGoBack} />
+          <BackButton />
           <Button caption="Next" type="submit" />
         </section>
       </form>

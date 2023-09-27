@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { updateStepFour } from "../actions";
 import { POSITION, SKILLS } from "../constants";
+import BackButton from "./BackButton";
 import Button from "./Button";
 import FormFieldRadioGroup from "./FormFieldRadioGroup";
 import FormFieldSelect from "./FormFieldSelect";
@@ -32,10 +33,6 @@ function Step4() {
     navigate("/result");
   };
 
-  const handleGoBack = () => {
-    navigate(-1);
-  };
-
   return (
     <section>
       <h2 className="text-4xl text-center py-4">Step 4</h2>
@@ -51,7 +48,7 @@ function Step4() {
           values={[...SKILLS]}
         />
         <section className="py-4 flex justify-end gap-2">
-          <Button caption="Back" handleClick={handleGoBack} />
+          <BackButton />
           <Button caption="Next" type="submit" />
         </section>
       </form>

@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { updateStepThree } from "../actions";
+import BackButton from "./BackButton";
 import Button from "./Button";
 import FormFieldDropzone from "./FormFieldDropzone";
 
@@ -27,19 +28,13 @@ function Step3() {
     navigate("/step4");
   };
 
-  const handleGoBack = () => {
-    navigate(-1);
-  };
-
   return (
     <section>
       <h2 className="text-4xl text-center py-4">Step 3</h2>
       <form className="w-48" onSubmit={handleSubmit(onSubmit)}>
-        <section className="bg-slate-100 rounded px-2 py-1 outline-none text-slate-800">
-          <FormFieldDropzone name="files" multiple control={control} />
-        </section>
+        <FormFieldDropzone name="files" multiple control={control} />
         <section className="py-4 flex justify-end gap-2">
-          <Button caption="Back" handleClick={handleGoBack} />
+          <BackButton />
           <Button caption="Next" type="submit" />
         </section>
       </form>

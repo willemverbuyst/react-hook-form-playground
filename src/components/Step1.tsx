@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { updateStepOne } from "../actions";
+import BackButton from "./BackButton";
 import Button from "./Button";
 import FormField from "./FormField";
 
@@ -34,10 +35,6 @@ function Step1() {
     navigate("/step2");
   };
 
-  const handleGoBack = () => {
-    navigate(-1);
-  };
-
   return (
     <section>
       <h2 className="text-4xl text-center py-4">Step 1</h2>
@@ -53,7 +50,7 @@ function Step1() {
           formRegister={register("lastName")}
         />
         <section className="py-4 flex justify-end gap-2">
-          <Button caption="Back" handleClick={handleGoBack} />
+          <BackButton />
           <Button caption="Next" type="submit" />
         </section>
       </form>

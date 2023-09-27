@@ -34,19 +34,21 @@ function FormFieldDropzone<T extends FieldValues>({
   multiple?: boolean;
 } & UseControllerProps<T>) {
   return (
-    <Controller
-      render={({ field: { onChange } }) => (
-        <Dropzone
-          multiple={multiple}
-          onChange={(e) =>
-            onChange(multiple ? e.target.files : e.target.files?.[0] ?? null)
-          }
-          {...rest}
-        />
-      )}
-      name={name}
-      control={control}
-    />
+    <section className="bg-slate-100 rounded px-2 py-1 outline-none text-slate-800">
+      <Controller
+        render={({ field: { onChange } }) => (
+          <Dropzone
+            multiple={multiple}
+            onChange={(e) =>
+              onChange(multiple ? e.target.files : e.target.files?.[0] ?? null)
+            }
+            {...rest}
+          />
+        )}
+        name={name}
+        control={control}
+      />
+    </section>
   );
 }
 
