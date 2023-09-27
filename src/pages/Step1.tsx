@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { updateStepOne } from "../actions";
-import BackButton from "./BackButton";
-import Button from "./Button";
-import FormField from "./FormField";
+import BackButton from "../components/BackButton";
+import Button from "../components/Button";
+import FormField from "../components/FormField";
 
 const stepOneFormValues = z.object({
   firstName: z.string().min(1, { message: "first name is required" }),

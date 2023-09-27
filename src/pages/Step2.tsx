@@ -4,10 +4,10 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { updateStepTwo } from "../actions";
-import BackButton from "./BackButton";
-import Button from "./Button";
-import FormField from "./FormField";
-import FormFieldCheckbox from "./FormFieldCheckbox";
+import BackButton from "../components/BackButton";
+import Button from "../components/Button";
+import FormField from "../components/FormField";
+import FormFieldCheckbox from "../components/FormFieldCheckbox";
 
 const stepTwoFormValues = z.object({
   email: z

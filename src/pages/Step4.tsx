@@ -4,11 +4,11 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { updateStepFour } from "../actions";
+import BackButton from "../components/BackButton";
+import Button from "../components/Button";
+import FormFieldRadioGroup from "../components/FormFieldRadioGroup";
+import FormFieldSelect from "../components/FormFieldSelect";
 import { POSITION, SKILLS } from "../constants";
-import BackButton from "./BackButton";
-import Button from "./Button";
-import FormFieldRadioGroup from "./FormFieldRadioGroup";
-import FormFieldSelect from "./FormFieldSelect";
 
 const stepFourFormValues = z.object({
   position: z.enum(POSITION),

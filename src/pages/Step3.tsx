@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { updateStepThree } from "../actions";
-import BackButton from "./BackButton";
-import Button from "./Button";
-import FormFieldDropzone from "./FormFieldDropzone";
+import BackButton from "../components/BackButton";
+import Button from "../components/Button";
+import FormFieldDropzone from "../components/FormFieldDropzone";
 
 const stepThreeFormValues = z.object({
   files: z.instanceof(FileList).optional(),

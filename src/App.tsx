@@ -4,13 +4,13 @@ import {
   createStore,
 } from "little-state-machine";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import Result from "./components/Result";
-import Start from "./components/Start";
-import Step1 from "./components/Step1";
-import Step2 from "./components/Step2";
-import Step3 from "./components/Step3";
-import Step4 from "./components/Step4";
 import { POSITION, SKILLS } from "./constants";
+import Result from "./pages/Result";
+import Start from "./pages/Start";
+import Step1 from "./pages/Step1";
+import Step2 from "./pages/Step2";
+import Step3 from "./pages/Step3";
+import Step4 from "./pages/Step4";
 
 function log(store: GlobalState) {
   console.table(store.data);

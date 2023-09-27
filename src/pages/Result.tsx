@@ -1,6 +1,6 @@
 import { useStateMachine } from "little-state-machine";
 import { useNavigate } from "react-router-dom";
-import Button from "./Button";
+import Button from "../components/Button";
 
 function Result() {
   const navigate = useNavigate();
