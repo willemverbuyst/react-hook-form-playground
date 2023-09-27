@@ -11,21 +11,18 @@ const stepThreeFormValues = z.object({
   files: z.instanceof(FileList),
 });
 
-type StepThreeFormvalues = z.infer<typeof stepThreeFormValues>;
+type StepThreeFormValues = z.infer<typeof stepThreeFormValues>;
 
 function Step3() {
-  const { actions, state } = useStateMachine({ updateStepThree });
+  const { actions } = useStateMachine({ updateStepThree });
   const navigate = useNavigate();
-  const { handleSubmit, control } = useForm<StepThreeFormvalues>({
+  const { handleSubmit, control } = useForm<StepThreeFormValues>({
     resolver: zodResolver(stepThreeFormValues),
-    defaultValues: {
-      files: state.data.files,
-    },
   });
 
-  const onSubmit = (data: StepThreeFormvalues) => {
+  const onSubmit = (data: StepThreeFormValues) => {
     actions.updateStepThree(data);
-    navigate("/result");
+    navigate("/step4");
   };
 
   const handleGoBack = () => {

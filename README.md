@@ -10,3 +10,5 @@ WIP
 - [ ] date picker
 - [ ] phone number validation
 - [ ] async select
+- [ ] tailwind css
+- [ ] little state machine

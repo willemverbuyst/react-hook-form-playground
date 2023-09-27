@@ -12,7 +12,7 @@ const stepOneFormValues = z.object({
   lastName: z.string().min(1, { message: "last name is required" }),
 });
 
-type StepOneFormvalues = z.infer<typeof stepOneFormValues>;
+type StepOneFormValues = z.infer<typeof stepOneFormValues>;
 
 function Step1() {
   const { actions, state } = useStateMachine({ updateStepOne });
@@ -21,7 +21,7 @@ function Step1() {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<StepOneFormvalues>({
+  } = useForm<StepOneFormValues>({
     resolver: zodResolver(stepOneFormValues),
     defaultValues: {
       firstName: state.data.firstName,
@@ -29,7 +29,7 @@ function Step1() {
     },
   });
 
-  const onSubmit = (data: StepOneFormvalues) => {
+  const onSubmit = (data: StepOneFormValues) => {
     actions.updateStepOne(data);
     navigate("/step2");
   };

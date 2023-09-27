@@ -9,6 +9,7 @@ declare module "little-state-machine" {
       hasPhoneNumber: boolean;
       phoneNumber: string;
       files: FileList | undefined;
+      position: "front-end" | "back-end" | "full-stack";
     };
   }
 }

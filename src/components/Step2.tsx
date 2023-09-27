@@ -17,7 +17,7 @@ const stepTwoFormValues = z.object({
   phoneNumber: z.string(),
 });
 
-type StepTwoFormvalues = z.infer<typeof stepTwoFormValues>;
+type StepTwoFormValues = z.infer<typeof stepTwoFormValues>;
 
 function Step2() {
   const { actions, state } = useStateMachine({ updateStepTwo });
@@ -27,7 +27,7 @@ function Step2() {
     register,
     formState: { errors },
     watch,
-  } = useForm<StepTwoFormvalues>({
+  } = useForm<StepTwoFormValues>({
     resolver: zodResolver(stepTwoFormValues),
     defaultValues: {
       email: state.data.email,
@@ -36,7 +36,7 @@ function Step2() {
     },
   });
 
-  const onSubmit = (data: StepTwoFormvalues) => {
+  const onSubmit = (data: StepTwoFormValues) => {
     actions.updateStepTwo(data);
     navigate("/step3");
   };
