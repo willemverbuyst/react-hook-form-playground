@@ -13,7 +13,7 @@ const stepThreeFormValues = z.object({
 
 type StepThreeFormvalues = z.infer<typeof stepThreeFormValues>;
 
-function StepThree() {
+function Step3() {
   const { actions, state } = useStateMachine({ updateStepThree });
   const navigate = useNavigate();
   const { handleSubmit, control } = useForm<StepThreeFormvalues>({
@@ -48,4 +48,4 @@ function StepThree() {
   );
 }
 
-export default StepThree;
+export default Step3;

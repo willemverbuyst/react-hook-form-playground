@@ -14,7 +14,7 @@ const stepOneFormValues = z.object({
 
 type StepOneFormvalues = z.infer<typeof stepOneFormValues>;
 
-function StepOne() {
+function Step1() {
   const { actions, state } = useStateMachine({ updateStepOne });
   const navigate = useNavigate();
   const {
@@ -61,4 +61,4 @@ function StepOne() {
   );
 }
 
-export default StepOne;
+export default Step1;

@@ -19,7 +19,7 @@ const stepTwoFormValues = z.object({
 
 type StepTwoFormvalues = z.infer<typeof stepTwoFormValues>;
 
-function StepTwo() {
+function Step2() {
   const { actions, state } = useStateMachine({ updateStepTwo });
   const navigate = useNavigate();
   const {
@@ -76,4 +76,4 @@ function StepTwo() {
   );
 }
 
-export default StepTwo;
+export default Step2;

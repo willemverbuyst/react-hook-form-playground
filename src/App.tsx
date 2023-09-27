@@ -6,9 +6,9 @@ import {
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Result from "./components/Result";
 import Start from "./components/Start";
-import StepOne from "./components/StepOne";
-import StepThree from "./components/StepThree";
-import StepTwo from "./components/StepTwo";
+import Step1 from "./components/Step1";
+import Step2 from "./components/Step2";
+import Step3 from "./components/Step3";
 
 function log(store: GlobalState) {
   console.table(store.data);
@@ -23,7 +23,7 @@ createStore(
       email: "",
       hasPhoneNumber: false,
       phoneNumber: "",
-      files: [],
+      files: undefined,
     },
   },
   {
@@ -41,9 +41,9 @@ function App() {
           <Router>
             <Routes>
               <Route path="/" element={<Start />} />
-              <Route path="/step1" element={<StepOne />} />
-              <Route path="/step2" element={<StepTwo />} />
-              <Route path="/step3" element={<StepThree />} />
+              <Route path="/step1" element={<Step1 />} />
+              <Route path="/step2" element={<Step2 />} />
+              <Route path="/step3" element={<Step3 />} />
               <Route path="/result" element={<Result />} />
             </Routes>
           </Router>
