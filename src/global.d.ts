@@ -1,5 +1,5 @@
 import "little-state-machine";
-import { SKILLS } from "./constants";
+import { POSITION, SKILLS } from "./constants";
 
 declare module "little-state-machine" {
   interface GlobalState {
@@ -10,8 +10,8 @@ declare module "little-state-machine" {
       hasPhoneNumber: boolean;
       phoneNumber: string;
       files: FileList | undefined;
-      position: "front-end" | "back-end" | "full-stack";
-      skills: keyof typeof SKILLS | null;
+      position: (typeof POSITION)[number];
+      skills: (typeof SKILLS)[number];
     };
   }
 }

@@ -1,4 +1,5 @@
 import { GlobalState } from "little-state-machine";
+import { POSITION, SKILLS } from "./constants";
 
 export function updateStepOne(
   state: GlobalState,
@@ -54,7 +55,8 @@ export function updateStepThree(
 export function updateStepFour(
   state: GlobalState,
   payload: {
-    position: "front-end" | "back-end" | "full-stack";
+    position: (typeof POSITION)[number];
+    skills: (typeof SKILLS)[number];
   }
 ) {
   return {

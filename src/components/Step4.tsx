@@ -4,13 +4,13 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { updateStepFour } from "../actions";
-import { SKILLS } from "../constants";
+import { POSITION, SKILLS } from "../constants";
 import Button from "./Button";
 import FormFieldRadioGroup from "./FormFieldRadioGroup";
 import FormFieldSelect from "./FormFieldSelect";
 
 const stepFourFormValues = z.object({
-  position: z.enum(["front-end", "back-end", "full-stack"]),
+  position: z.enum(POSITION),
   skills: z.enum(SKILLS),
 });
 
@@ -23,6 +23,7 @@ function Step4() {
     resolver: zodResolver(stepFourFormValues),
     defaultValues: {
       position: state.data.position,
+      skills: state.data.skills,
     },
   });
 
@@ -42,7 +43,7 @@ function Step4() {
         <FormFieldRadioGroup
           legend="Position?"
           formRegister={register("position")}
-          values={["front-end", "back-end", "full-stack"]}
+          values={[...POSITION]}
         />
         <FormFieldSelect
           label="Skills"

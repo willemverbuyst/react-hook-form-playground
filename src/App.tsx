@@ -10,6 +10,7 @@ import Step1 from "./components/Step1";
 import Step2 from "./components/Step2";
 import Step3 from "./components/Step3";
 import Step4 from "./components/Step4";
+import { POSITION, SKILLS } from "./constants";
 
 function log(store: GlobalState) {
   console.table(store.data);
@@ -25,8 +26,8 @@ createStore(
       hasPhoneNumber: false,
       phoneNumber: "",
       files: undefined,
-      position: "front-end",
-      skills: null,
+      position: POSITION[0],
+      skills: SKILLS[0],
     },
   },
   {
