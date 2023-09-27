@@ -4,11 +4,14 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { updateStepFour } from "../actions";
+import { SKILLS } from "../constants";
 import Button from "./Button";
 import FormFieldRadioGroup from "./FormFieldRadioGroup";
+import FormFieldSelect from "./FormFieldSelect";
 
 const stepFourFormValues = z.object({
   position: z.enum(["front-end", "back-end", "full-stack"]),
+  skills: z.enum(SKILLS),
 });
 
 type StepFourFormValues = z.infer<typeof stepFourFormValues>;
@@ -40,6 +43,11 @@ function Step4() {
           legend="Position?"
           formRegister={register("position")}
           values={["front-end", "back-end", "full-stack"]}
+        />
+        <FormFieldSelect
+          label="Skills"
+          formRegister={register("skills")}
+          values={[...SKILLS]}
         />
         <section className="py-4 flex justify-end gap-2">
           <Button caption="Back" handleClick={handleGoBack} />

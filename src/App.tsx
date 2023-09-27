@@ -26,6 +26,7 @@ createStore(
       phoneNumber: "",
       files: undefined,
       position: "front-end",
+      skills: null,
     },
   },
   {
