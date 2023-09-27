@@ -36,9 +36,12 @@ export function updateStepTwo(
 export function updateStepThree(
   state: GlobalState,
   payload: {
-    files: FileList;
+    files: FileList | undefined;
   }
 ) {
+  if (!payload.files) {
+    return state;
+  }
   return {
     ...state,
     data: {

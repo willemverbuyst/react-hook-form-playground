@@ -8,7 +8,7 @@ import Button from "./Button";
 import FormFieldDropzone from "./FormFieldDropzone";
 
 const stepThreeFormValues = z.object({
-  files: z.instanceof(FileList),
+  files: z.instanceof(FileList).optional(),
 });
 
 type StepThreeFormValues = z.infer<typeof stepThreeFormValues>;
@@ -18,10 +18,12 @@ function Step3() {
   const navigate = useNavigate();
   const { handleSubmit, control } = useForm<StepThreeFormValues>({
     resolver: zodResolver(stepThreeFormValues),
+    defaultValues: { files: undefined },
   });
 
   const onSubmit = (data: StepThreeFormValues) => {
-    actions.updateStepThree(data);
+    actions.updateStepThree({ files: data.files });
+
     navigate("/step4");
   };
 
