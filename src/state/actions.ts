@@ -1,5 +1,5 @@
 import { GlobalState } from "little-state-machine";
-import { POSITION, SKILLS } from "./constants";
+import { POSITION, SKILLS } from "../constants";
 
 export function updateStepOne(
   state: GlobalState,

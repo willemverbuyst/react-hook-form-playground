@@ -3,10 +3,10 @@ import { useStateMachine } from "little-state-machine";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
-import { updateStepThree } from "../actions";
 import BackButton from "../components/BackButton";
 import Button from "../components/Button";
 import FormFieldDropzone from "../components/FormFieldDropzone";
+import { updateStepThree } from "../state/actions";
 
 const stepThreeFormValues = z.object({
   files: z.instanceof(FileList).optional(),

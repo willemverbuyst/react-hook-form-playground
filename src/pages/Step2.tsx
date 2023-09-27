@@ -3,11 +3,11 @@ import { useStateMachine } from "little-state-machine";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
-import { updateStepTwo } from "../actions";
 import BackButton from "../components/BackButton";
 import Button from "../components/Button";
 import FormField from "../components/FormField";
 import FormFieldCheckbox from "../components/FormFieldCheckbox";
+import { updateStepTwo } from "../state/actions";
 
 const stepTwoFormValues = z.object({
   email: z
