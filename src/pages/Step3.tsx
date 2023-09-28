@@ -31,7 +31,7 @@ function Step3() {
   return (
     <section>
       <h2 className="text-4xl text-center py-4">Step 3</h2>
-      <form className="w-48" onSubmit={handleSubmit(onSubmit)}>
+      <form className="w-66" onSubmit={handleSubmit(onSubmit)}>
         <FormFieldDropzone name="files" multiple control={control} />
         <section className="py-4 flex justify-end gap-2">
           <BackButton />

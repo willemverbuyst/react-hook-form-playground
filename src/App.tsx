@@ -23,6 +23,7 @@ createStore(
       firstName: "",
       lastName: "",
       bsn: "",
+      dateOfBirth: undefined,
       email: "",
       hasPhoneNumber: false,
       phoneNumber: "",

@@ -36,7 +36,7 @@ function Step4() {
   return (
     <section>
       <h2 className="text-4xl text-center py-4">Step 4</h2>
-      <form className="w-48" onSubmit={handleSubmit(onSubmit)}>
+      <form className="w-66" onSubmit={handleSubmit(onSubmit)}>
         <FormFieldRadioGroup
           legend="Position?"
           formRegister={register("position")}

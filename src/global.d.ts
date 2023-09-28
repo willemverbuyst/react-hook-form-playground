@@ -7,6 +7,7 @@ declare module "little-state-machine" {
       firstName: string;
       lastName: string;
       bsn: string;
+      dateOfBirth: Date | undefined;
       email: string;
       hasPhoneNumber: boolean;
       phoneNumber: string;

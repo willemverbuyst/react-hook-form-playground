@@ -7,6 +7,7 @@ import { z } from "zod";
 import BackButton from "../components/BackButton";
 import Button from "../components/Button";
 import FormField from "../components/FormField";
+import FormFieldDatePicker from "../components/FormFieldDatePicker";
 import { updateStepOne } from "../state/actions";
 
 const stepOneFormValues = z.object({
@@ -18,6 +19,7 @@ const stepOneFormValues = z.object({
       message: "this is not a valid bsn",
     })
   ),
+  dateOfBirth: z.date().optional(),
 });
 
 type StepOneFormValues = z.infer<typeof stepOneFormValues>;
@@ -26,6 +28,7 @@ function Step1() {
   const { actions, state } = useStateMachine({ updateStepOne });
   const navigate = useNavigate();
   const {
+    control,
     handleSubmit,
     register,
     formState: { errors },
@@ -35,6 +38,7 @@ function Step1() {
       firstName: state.data.firstName,
       lastName: state.data.lastName,
       bsn: state.data.bsn,
+      dateOfBirth: state.data.dateOfBirth,
     },
   });
 
@@ -46,7 +50,7 @@ function Step1() {
   return (
     <section>
       <h2 className="text-4xl text-center py-4">Step 1</h2>
-      <form className="w-48" onSubmit={handleSubmit(onSubmit)}>
+      <form className="w-66" onSubmit={handleSubmit(onSubmit)}>
         <FormField
           label="First Name"
           error={errors.firstName}
@@ -61,6 +65,12 @@ function Step1() {
           label="BSN"
           error={errors.bsn}
           formRegister={register("bsn")}
+        />
+        <FormFieldDatePicker
+          label="Date of Birth"
+          control={control}
+          name="dateOfBirth"
+          error={errors.dateOfBirth}
         />
         <section className="py-4 flex justify-end gap-2">
           <BackButton />
