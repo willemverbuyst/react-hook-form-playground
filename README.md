@@ -7,8 +7,8 @@ WIP
 - [ ] add fields
 - [x] upload files (dropzone)
 - [ ] overview before confirming
-- [ ] date picker
-- [ ] phone number validation
+- [x] date picker
+- [x] phone number validation
 - [ ] async select
-- [ ] tailwind css
-- [ ] little state machine
+- [x] tailwind css
+- [x] little state machine
