@@ -22,6 +22,7 @@ createStore(
     data: {
       firstName: "",
       lastName: "",
+      bsn: "",
       email: "",
       hasPhoneNumber: false,
       phoneNumber: "",

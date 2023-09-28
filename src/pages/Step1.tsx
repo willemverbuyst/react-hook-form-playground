@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { isValidBSN } from "bsn-js";
 import { useStateMachine } from "little-state-machine";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +12,12 @@ import { updateStepOne } from "../state/actions";
 const stepOneFormValues = z.object({
   firstName: z.string().min(1, { message: "first name is required" }),
   lastName: z.string().min(1, { message: "last name is required" }),
+  bsn: z.string().refine(
+    (val) => (val ? isValidBSN(val) : true),
+    () => ({
+      message: "this is not a valid bsn",
+    })
+  ),
 });
 
 type StepOneFormValues = z.infer<typeof stepOneFormValues>;
@@ -27,6 +34,7 @@ function Step1() {
     defaultValues: {
       firstName: state.data.firstName,
       lastName: state.data.lastName,
+      bsn: state.data.bsn,
     },
   });
 
@@ -48,6 +56,11 @@ function Step1() {
           label="Last Name"
           error={errors.lastName}
           formRegister={register("lastName")}
+        />
+        <FormField
+          label="BSN"
+          error={errors.bsn}
+          formRegister={register("bsn")}
         />
         <section className="py-4 flex justify-end gap-2">
           <BackButton />
