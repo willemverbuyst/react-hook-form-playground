@@ -1,12 +1,15 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useStateMachine } from "little-state-machine";
 import { useForm } from "react-hook-form";
+import { isValidPhoneNumber } from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import BackButton from "../components/BackButton";
 import Button from "../components/Button";
 import FormField from "../components/FormField";
 import FormFieldCheckbox from "../components/FormFieldCheckbox";
+import FormFieldPhoneNumber from "../components/FormFieldPhoneNumber";
 import { updateStepTwo } from "../state/actions";
 
 const stepTwoFormValues = z.object({
@@ -15,7 +18,10 @@ const stepTwoFormValues = z.object({
     .min(1, { message: "email is required" })
     .email("this is not a valid email."),
   hasPhoneNumber: z.boolean(),
-  phoneNumber: z.string(),
+  phoneNumber: z.string().refine(
+    (val) => isValidPhoneNumber(val),
+    () => ({ message: "this is not a valid phone number" })
+  ),
 });
 
 type StepTwoFormValues = z.infer<typeof stepTwoFormValues>;
@@ -24,6 +30,7 @@ function Step2() {
   const { actions, state } = useStateMachine({ updateStepTwo });
   const navigate = useNavigate();
   const {
+    control,
     handleSubmit,
     register,
     formState: { errors },
@@ -58,12 +65,14 @@ function Step2() {
           formRegister={register("hasPhoneNumber")}
         />
         {hasPhone && (
-          <FormField
+          <FormFieldPhoneNumber
             label="Phone Number"
+            control={control}
             error={errors.phoneNumber}
-            formRegister={register("phoneNumber")}
+            name="phoneNumber"
           />
         )}
+
         <section className="py-4 flex justify-end gap-2">
           <BackButton />
           <Button caption="Next" type="submit" />
