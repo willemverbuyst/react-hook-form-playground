@@ -13,7 +13,7 @@ import Step3 from "./pages/Step3";
 import Step4 from "./pages/Step4";
 
 function log(store: GlobalState) {
-  console.table(store.data);
+  console.info(JSON.stringify(store.data));
   return store;
 }
 

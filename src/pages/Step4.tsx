@@ -59,9 +59,8 @@ function Step4() {
         <section className="flex flex-col py-1">
           <label className="text-2xl">Skills</label>
           {fields.map((_, i) => (
-            <section className="flex justify-between gap-1">
+            <section key={i} className="flex justify-between gap-1">
               <FormFieldSelect
-                key={i}
                 formRegister={register(`skills.${i}.value`)}
                 options={SKILLS.map((i) => ({ value: i }))}
               />

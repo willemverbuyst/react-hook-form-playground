@@ -1,16 +1,18 @@
 import { useStateMachine } from "little-state-machine";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
+import { resetStore } from "../state/actions";
 
 function Result() {
   const navigate = useNavigate();
-  const { state } = useStateMachine();
+  const { actions, state } = useStateMachine({ resetStore });
 
   const handleGoBack = () => {
     navigate(-1);
   };
 
   const handleGoToStart = () => {
+    actions.resetStore();
     navigate("/");
   };
 

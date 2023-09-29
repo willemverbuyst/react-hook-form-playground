@@ -67,3 +67,20 @@ export function updateStepFour(
     },
   };
 }
+
+export function resetStore() {
+  return {
+    data: {
+      firstName: "",
+      lastName: "",
+      bsn: "",
+      dateOfBirth: undefined,
+      email: "",
+      hasPhoneNumber: false,
+      phoneNumber: "",
+      files: undefined,
+      position: POSITION[0],
+      skills: [{ value: "" }],
+    },
+  };
+}
