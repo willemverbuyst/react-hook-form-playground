@@ -1,4 +1,4 @@
-WIP
+Small project to try out react-hook-form with zod, little-state-machine and tailwind-css
 
 - [x] react hook form
 - [x] multi-step (with router)
@@ -6,8 +6,9 @@ WIP
 - [x] dependent field
 - [x] add dropdowns by user action
 - [x] upload files (dropzone)
-- [ ] overview before confirming
+- [x] overview before confirming
 - [x] date picker
 - [x] phone number validation
 - [x] tailwind css
 - [x] little state machine
+- [x] breadcrumbs
