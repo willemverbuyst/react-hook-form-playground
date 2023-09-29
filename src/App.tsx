@@ -4,7 +4,8 @@ import {
   createStore,
 } from "little-state-machine";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import { POSITION } from "./constants";
+import BreadCrumbs from "./components/BreadCrumbs";
+import { NAVIGATION, POSITION } from "./constants";
 import Result from "./pages/Result";
 import Start from "./pages/Start";
 import Step1 from "./pages/Step1";
@@ -13,7 +14,7 @@ import Step3 from "./pages/Step3";
 import Step4 from "./pages/Step4";
 
 function log(store: GlobalState) {
-  console.info(JSON.stringify(store.data));
+  console.info(JSON.stringify(store));
   return store;
 }
 
@@ -31,6 +32,7 @@ createStore(
       position: POSITION[0],
       skills: [{ value: "" }],
     },
+    navigation: NAVIGATION[0],
   },
   {
     middleWares: [log],
@@ -45,6 +47,7 @@ function App() {
         <div className="flex flex-col items-center">
           <h1 className="text-5xl py-5">React Form Hook Playground</h1>
           <Router>
+            <BreadCrumbs />
             <Routes>
               <Route path="/" element={<Start />} />
               <Route path="/step1" element={<Step1 />} />
