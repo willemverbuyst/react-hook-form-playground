@@ -4,7 +4,7 @@ WIP
 - [x] multi-step (with router)
 - [x] validation (zod)
 - [x] dependent field
-- [ ] add fields
+- [x] add dropdowns by user action
 - [x] upload files (dropzone)
 - [ ] overview before confirming
 - [x] date picker

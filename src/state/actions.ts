@@ -56,7 +56,7 @@ export function updateStepFour(
   state: GlobalState,
   payload: {
     position: (typeof POSITION)[number];
-    skills: (typeof SKILLS)[number];
+    skills: { value: (typeof SKILLS)[number] | "" }[];
   }
 ) {
   return {

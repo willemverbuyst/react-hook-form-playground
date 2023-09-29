@@ -19,7 +19,7 @@ const stepTwoFormValues = z.object({
     .email("this is not a valid email."),
   hasPhoneNumber: z.boolean(),
   phoneNumber: z.string().refine(
-    (val) => isValidPhoneNumber(val),
+    (val) => (val ? isValidPhoneNumber(val) : true),
     () => ({ message: "this is not a valid phone number" })
   ),
 });

@@ -4,7 +4,7 @@ import {
   createStore,
 } from "little-state-machine";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import { POSITION, SKILLS } from "./constants";
+import { POSITION } from "./constants";
 import Result from "./pages/Result";
 import Start from "./pages/Start";
 import Step1 from "./pages/Step1";
@@ -29,7 +29,7 @@ createStore(
       phoneNumber: "",
       files: undefined,
       position: POSITION[0],
-      skills: SKILLS[0],
+      skills: [{ value: "" }],
     },
   },
   {

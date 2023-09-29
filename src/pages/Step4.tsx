@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useStateMachine } from "little-state-machine";
-import { useForm } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import BackButton from "../components/BackButton";
@@ -12,7 +12,7 @@ import { updateStepFour } from "../state/actions";
 
 const stepFourFormValues = z.object({
   position: z.enum(POSITION),
-  skills: z.enum(SKILLS),
+  skills: z.array(z.object({ value: z.enum([...SKILLS, ""]) })),
 });
 
 type StepFourFormValues = z.infer<typeof stepFourFormValues>;
@@ -20,17 +20,23 @@ type StepFourFormValues = z.infer<typeof stepFourFormValues>;
 function Step4() {
   const { actions, state } = useStateMachine({ updateStepFour });
   const navigate = useNavigate();
-  const { handleSubmit, register } = useForm<StepFourFormValues>({
+  const { handleSubmit, register, control } = useForm<StepFourFormValues>({
     resolver: zodResolver(stepFourFormValues),
     defaultValues: {
       position: state.data.position,
       skills: state.data.skills,
     },
   });
+  const { fields, append, remove } = useFieldArray({ control, name: "skills" });
 
   const onSubmit = (data: StepFourFormValues) => {
     actions.updateStepFour(data);
     navigate("/result");
+  };
+
+  const appendSkill = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    append({ value: "" });
   };
 
   return (
@@ -42,11 +48,32 @@ function Step4() {
           formRegister={register("position")}
           values={[...POSITION]}
         />
-        <FormFieldSelect
-          label="Skills"
-          formRegister={register("skills")}
-          values={[...SKILLS]}
-        />
+        <section className="flex flex-col py-1">
+          <label className="text-2xl">Skills</label>
+          {fields.map((_, i) => (
+            <section className="flex justify-between gap-1">
+              <FormFieldSelect
+                key={i}
+                formRegister={register(`skills.${i}.value`)}
+                options={SKILLS.map((i) => ({ value: i }))}
+              />
+              {i > 0 && (
+                <button
+                  className="text-slate-300 px-2 rounded hover:bg-slate-700 focus-within:bg-slate-700 outline-none"
+                  onClick={() => remove(i)}
+                >
+                  -
+                </button>
+              )}
+              <button
+                onClick={appendSkill}
+                className="text-slate-300 px-2 rounded hover:bg-slate-700 focus-within:bg-slate-700 outline-none"
+              >
+                +
+              </button>
+            </section>
+          ))}
+        </section>
         <section className="py-4 flex justify-end gap-2">
           <BackButton />
           <Button caption="Next" type="submit" />

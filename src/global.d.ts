@@ -1,5 +1,5 @@
 import "little-state-machine";
-import { POSITION, SKILLS } from "./constants";
+import { POSITION } from "./constants";
 
 declare module "little-state-machine" {
   interface GlobalState {
@@ -13,7 +13,7 @@ declare module "little-state-machine" {
       phoneNumber: string;
       files: FileList | undefined;
       position: (typeof POSITION)[number];
-      skills: (typeof SKILLS)[number];
+      skills: { value: (typeof SKILLS)[number] | "" }[];
     };
   }
 }
