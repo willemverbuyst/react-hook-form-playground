@@ -39,6 +39,14 @@ function Step4() {
     append({ value: "" });
   };
 
+  const removeSkill = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    i: number
+  ) => {
+    e.preventDefault();
+    remove(i);
+  };
+
   return (
     <section>
       <h2 className="text-4xl text-center py-4">Step 4</h2>
@@ -60,7 +68,7 @@ function Step4() {
               {i > 0 && (
                 <button
                   className="text-slate-300 px-2 rounded hover:bg-slate-700 focus-within:bg-slate-700 outline-none"
-                  onClick={() => remove(i)}
+                  onClick={(e) => removeSkill(e, i)}
                 >
                   -
                 </button>

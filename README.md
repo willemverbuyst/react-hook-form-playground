@@ -9,6 +9,5 @@ WIP
 - [ ] overview before confirming
 - [x] date picker
 - [x] phone number validation
-- [ ] async select
 - [x] tailwind css
 - [x] little state machine
