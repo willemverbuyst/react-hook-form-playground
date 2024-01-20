@@ -70,10 +70,6 @@ function Result() {
               ))}
           </ul>
         </section>
-        <section className="flex justify-between gap-8">
-          <p>Phone Number:</p>
-          <p>{state.data.phoneNumber}</p>
-        </section>
       </section>
       <section className="py-4 flex justify-end gap-2">
         <Button caption="back" handleClick={handleGoBack} />

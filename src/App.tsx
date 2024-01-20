@@ -5,7 +5,7 @@ import {
 } from "little-state-machine";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import BreadCrumbs from "./components/BreadCrumbs";
-import { NAVIGATION, POSITION } from "./constants";
+import { POSITION } from "./constants";
 import Result from "./pages/Result";
 import Start from "./pages/Start";
 import Step1 from "./pages/Step1";
@@ -32,7 +32,6 @@ createStore(
       position: POSITION[0],
       skills: [{ value: "" }],
     },
-    navigation: NAVIGATION[0],
   },
   {
     middleWares: [log],
