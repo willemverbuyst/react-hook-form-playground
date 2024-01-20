@@ -4,8 +4,8 @@ import {
   createStore,
 } from "little-state-machine";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import BreadCrumbs from "./components/BreadCrumbs";
-import { POSITION } from "./constants";
+import { NAVIGATION_MULTI, POSITION } from "./constants";
+import Home from "./pages/Home";
 import Result from "./pages/Result";
 import Start from "./pages/Start";
 import Step1 from "./pages/Step1";
@@ -46,14 +46,30 @@ function App() {
         <div className="flex flex-col items-center">
           <h1 className="text-5xl py-5">React Form Hook Playground</h1>
           <Router>
-            <BreadCrumbs />
             <Routes>
-              <Route path="/" element={<Start />} />
-              <Route path="/step1" element={<Step1 />} />
-              <Route path="/step2" element={<Step2 />} />
-              <Route path="/step3" element={<Step3 />} />
-              <Route path="/step4" element={<Step4 />} />
-              <Route path="/result" element={<Result />} />
+              <Route path="/" element={<Home />} />
+
+              <Route path={NAVIGATION_MULTI["/multi/"]} element={<Start />} />
+              <Route
+                path={NAVIGATION_MULTI["/multi/step1"]}
+                element={<Step1 />}
+              />
+              <Route
+                path={NAVIGATION_MULTI["/multi/step2"]}
+                element={<Step2 />}
+              />
+              <Route
+                path={NAVIGATION_MULTI["/multi/step3"]}
+                element={<Step3 />}
+              />
+              <Route
+                path={NAVIGATION_MULTI["/multi/step4"]}
+                element={<Step4 />}
+              />
+              <Route
+                path={NAVIGATION_MULTI["/multi/result"]}
+                element={<Result />}
+              />
             </Routes>
           </Router>
         </div>

@@ -11,11 +11,11 @@ export const SKILLS = [
   "xyzzy",
   "thud",
 ] as const;
-export const NAVIGATION = {
-  "/": "/",
-  "/step1": "/step1",
-  "/step2": "/step2",
-  "/step3": "/step3",
-  "/step4": "/step4",
-  "/result": "/result",
+export const NAVIGATION_MULTI = {
+  "/multi/": "/mutli/",
+  "/multi/step1": "/multi/step1",
+  "/multi/step2": "/multi/step2",
+  "/multi/step3": "/multi/step3",
+  "/multi/step4": "/multi/step4",
+  "/multi/result": "/multi/result",
 };

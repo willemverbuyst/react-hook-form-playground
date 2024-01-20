@@ -4,10 +4,11 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import BackButton from "../components/BackButton";
+import BreadCrumbs from "../components/BreadCrumbs";
 import Button from "../components/Button";
 import FormFieldRadioGroup from "../components/FormFieldRadioGroup";
 import FormFieldSelect from "../components/FormFieldSelect";
-import { POSITION, SKILLS } from "../constants";
+import { NAVIGATION_MULTI, POSITION, SKILLS } from "../constants";
 import { updateStepFour } from "../state/actions";
 
 const stepFourFormValues = z.object({
@@ -31,7 +32,7 @@ function Step4() {
 
   const onSubmit = (data: StepFourFormValues) => {
     actions.updateStepFour(data);
-    navigate("/result");
+    navigate(NAVIGATION_MULTI["/multi/result"]);
   };
 
   const appendSkill = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -48,45 +49,48 @@ function Step4() {
   };
 
   return (
-    <section>
-      <h2 className="text-4xl text-center py-4">Step 4</h2>
-      <form className="w-66" onSubmit={handleSubmit(onSubmit)}>
-        <FormFieldRadioGroup
-          legend="Position?"
-          formRegister={register("position")}
-          values={[...POSITION]}
-        />
-        <section className="flex flex-col py-1">
-          <label className="text-2xl">Skills</label>
-          {fields.map((_, i) => (
-            <section key={i} className="flex justify-between gap-1">
-              <FormFieldSelect
-                formRegister={register(`skills.${i}.value`)}
-                options={SKILLS.map((i) => ({ value: i }))}
-              />
-              {i > 0 && (
+    <>
+      <BreadCrumbs />
+      <section>
+        <h2 className="text-4xl text-center py-4">Step 4</h2>
+        <form className="w-66" onSubmit={handleSubmit(onSubmit)}>
+          <FormFieldRadioGroup
+            legend="Position?"
+            formRegister={register("position")}
+            values={[...POSITION]}
+          />
+          <section className="flex flex-col py-1">
+            <label className="text-2xl">Skills</label>
+            {fields.map((_, i) => (
+              <section key={i} className="flex justify-between gap-1">
+                <FormFieldSelect
+                  formRegister={register(`skills.${i}.value`)}
+                  options={SKILLS.map((i) => ({ value: i }))}
+                />
+                {i > 0 && (
+                  <button
+                    className="text-slate-300 px-2 rounded hover:bg-slate-700 focus-within:bg-slate-700 outline-none"
+                    onClick={(e) => removeSkill(e, i)}
+                  >
+                    -
+                  </button>
+                )}
                 <button
+                  onClick={appendSkill}
                   className="text-slate-300 px-2 rounded hover:bg-slate-700 focus-within:bg-slate-700 outline-none"
-                  onClick={(e) => removeSkill(e, i)}
                 >
-                  -
+                  +
                 </button>
-              )}
-              <button
-                onClick={appendSkill}
-                className="text-slate-300 px-2 rounded hover:bg-slate-700 focus-within:bg-slate-700 outline-none"
-              >
-                +
-              </button>
-            </section>
-          ))}
-        </section>
-        <section className="py-4 flex justify-end gap-2">
-          <BackButton />
-          <Button caption="Next" type="submit" />
-        </section>
-      </form>
-    </section>
+              </section>
+            ))}
+          </section>
+          <section className="py-4 flex justify-end gap-2">
+            <BackButton />
+            <Button caption="Next" type="submit" />
+          </section>
+        </form>
+      </section>
+    </>
   );
 }
 

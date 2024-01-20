@@ -4,8 +4,10 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import BackButton from "../components/BackButton";
+import BreadCrumbs from "../components/BreadCrumbs";
 import Button from "../components/Button";
 import FormFieldDropzone from "../components/FormFieldDropzone";
+import { NAVIGATION_MULTI } from "../constants";
 import { updateStepThree } from "../state/actions";
 
 const stepThreeFormValues = z.object({
@@ -25,29 +27,32 @@ function Step3() {
   const onSubmit = (data: StepThreeFormValues) => {
     actions.updateStepThree({ files: data.files });
 
-    navigate("/step4");
+    navigate(NAVIGATION_MULTI["/multi/step4"]);
   };
 
   return (
-    <section>
-      <h2 className="text-4xl text-center py-4">Step 3</h2>
-      <form className="w-66" onSubmit={handleSubmit(onSubmit)}>
-        <FormFieldDropzone name="files" multiple control={control} />
-        <section className="flex justify-between gap-8 py-2">
-          {state.data.files && (
-            <ul>
-              {Object.values(state.data.files || {}).map((f, i) => (
-                <li key={i}>{f.name}</li>
-              ))}
-            </ul>
-          )}
-        </section>
-        <section className="py-4 flex justify-end gap-2">
-          <BackButton />
-          <Button caption="Next" type="submit" />
-        </section>
-      </form>
-    </section>
+    <>
+      <BreadCrumbs />
+      <section>
+        <h2 className="text-4xl text-center py-4">Step 3</h2>
+        <form className="w-66" onSubmit={handleSubmit(onSubmit)}>
+          <FormFieldDropzone name="files" multiple control={control} />
+          <section className="flex justify-between gap-8 py-2">
+            {state.data.files && (
+              <ul>
+                {Object.values(state.data.files || {}).map((f, i) => (
+                  <li key={i}>{f.name}</li>
+                ))}
+              </ul>
+            )}
+          </section>
+          <section className="py-4 flex justify-end gap-2">
+            <BackButton />
+            <Button caption="Next" type="submit" />
+          </section>
+        </form>
+      </section>
+    </>
   );
 }
 

@@ -5,9 +5,11 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import BackButton from "../components/BackButton";
+import BreadCrumbs from "../components/BreadCrumbs";
 import Button from "../components/Button";
 import FormField from "../components/FormField";
 import FormFieldDatePicker from "../components/FormFieldDatePicker";
+import { NAVIGATION_MULTI } from "../constants";
 import { updateStepOne } from "../state/actions";
 
 const stepOneFormValues = z.object({
@@ -44,40 +46,43 @@ function Step1() {
 
   const onSubmit = (data: StepOneFormValues) => {
     actions.updateStepOne(data);
-    navigate("/step2");
+    navigate(NAVIGATION_MULTI["/multi/step2"]);
   };
 
   return (
-    <section>
-      <h2 className="text-4xl text-center py-4">Step 1</h2>
-      <form className="w-66" onSubmit={handleSubmit(onSubmit)}>
-        <FormField
-          label="First Name"
-          error={errors.firstName}
-          formRegister={register("firstName")}
-        />
-        <FormField
-          label="Last Name"
-          error={errors.lastName}
-          formRegister={register("lastName")}
-        />
-        <FormField
-          label="BSN"
-          error={errors.bsn}
-          formRegister={register("bsn")}
-        />
-        <FormFieldDatePicker
-          label="Date of Birth"
-          control={control}
-          name="dateOfBirth"
-          error={errors.dateOfBirth}
-        />
-        <section className="py-4 flex justify-end gap-2">
-          <BackButton />
-          <Button caption="Next" type="submit" />
-        </section>
-      </form>
-    </section>
+    <>
+      <BreadCrumbs />
+      <section>
+        <h2 className="text-4xl text-center py-4">Step 1</h2>
+        <form className="w-66" onSubmit={handleSubmit(onSubmit)}>
+          <FormField
+            label="First Name"
+            error={errors.firstName}
+            formRegister={register("firstName")}
+          />
+          <FormField
+            label="Last Name"
+            error={errors.lastName}
+            formRegister={register("lastName")}
+          />
+          <FormField
+            label="BSN"
+            error={errors.bsn}
+            formRegister={register("bsn")}
+          />
+          <FormFieldDatePicker
+            label="Date of Birth"
+            control={control}
+            name="dateOfBirth"
+            error={errors.dateOfBirth}
+          />
+          <section className="py-4 flex justify-end gap-2">
+            <BackButton />
+            <Button caption="Next" type="submit" />
+          </section>
+        </form>
+      </section>
+    </>
   );
 }
 
