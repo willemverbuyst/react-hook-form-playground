@@ -6,6 +6,7 @@ import {
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { MULTI, POSITION, ROUTES } from "./constants";
 import Home from "./pages/Home";
+import TransformAndParse from "./pages/TransformAndParse";
 import Result from "./pages/multi/Result";
 import Start from "./pages/multi/Start";
 import Step1 from "./pages/multi/Step1";
@@ -49,7 +50,6 @@ function App() {
           <Router>
             <Routes>
               <Route path={ROUTES.HOME} element={<Home />} />
-
               <Route path={ROUTES.MULTI} element={<Multi />}>
                 <Route path={MULTI.START} element={<Start />} />
                 <Route path={MULTI.STEP1} element={<Step1 />} />
@@ -58,6 +58,10 @@ function App() {
                 <Route path={MULTI.STEP4} element={<Step4 />} />
                 <Route path={MULTI.RESULT} element={<Result />} />
               </Route>
+              <Route
+                path={ROUTES.TRANSFORM_AND_PARSE}
+                element={<TransformAndParse />}
+              />
             </Routes>
           </Router>
         </div>

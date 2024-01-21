@@ -24,4 +24,5 @@ export const MULTI = {
 export const ROUTES = {
   HOME: "/",
   MULTI: "multi",
+  TRANSFORM_AND_PARSE: "transform-and-parse",
 };
