@@ -5,14 +5,13 @@ import { isValidPhoneNumber } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
-import BackButton from "../components/BackButton";
-import BreadCrumbs from "../components/BreadCrumbs";
-import Button from "../components/Button";
-import FormField from "../components/FormField";
-import FormFieldCheckbox from "../components/FormFieldCheckbox";
-import FormFieldPhoneNumber from "../components/FormFieldPhoneNumber";
-import { NAVIGATION_MULTI } from "../constants";
-import { updateStepTwo } from "../state/actions";
+import BackButton from "../../components/BackButton";
+import Button from "../../components/Button";
+import FormField from "../../components/FormField";
+import FormFieldCheckbox from "../../components/FormFieldCheckbox";
+import FormFieldPhoneNumber from "../../components/FormFieldPhoneNumber";
+import { MULTI, ROUTES } from "../../constants";
+import { updateStepTwo } from "../../state/actions";
 
 const stepTwoFormValues = z.object({
   email: z
@@ -48,42 +47,39 @@ function Step2() {
 
   const onSubmit = (data: StepTwoFormValues) => {
     actions.updateStepTwo(data);
-    navigate(NAVIGATION_MULTI["/multi/step3"]);
+    navigate(`/${ROUTES.MULTI}/${MULTI.STEP3}`);
   };
 
   const hasPhone = watch("hasPhoneNumber");
 
   return (
-    <>
-      <BreadCrumbs />
-      <section>
-        <h2 className="text-4xl text-center py-4">Step 2</h2>
-        <form className="w-66" onSubmit={handleSubmit(onSubmit)}>
-          <FormField
-            label="Email"
-            error={errors.email}
-            formRegister={register("email")}
+    <section>
+      <h2 className="text-4xl text-center py-4">Step 2</h2>
+      <form className="w-66" onSubmit={handleSubmit(onSubmit)}>
+        <FormField
+          label="Email"
+          error={errors.email}
+          formRegister={register("email")}
+        />
+        <FormFieldCheckbox
+          label="Phone Number?"
+          formRegister={register("hasPhoneNumber")}
+        />
+        {hasPhone && (
+          <FormFieldPhoneNumber
+            label="Phone Number"
+            control={control}
+            error={errors.phoneNumber}
+            name="phoneNumber"
           />
-          <FormFieldCheckbox
-            label="Phone Number?"
-            formRegister={register("hasPhoneNumber")}
-          />
-          {hasPhone && (
-            <FormFieldPhoneNumber
-              label="Phone Number"
-              control={control}
-              error={errors.phoneNumber}
-              name="phoneNumber"
-            />
-          )}
+        )}
 
-          <section className="py-4 flex justify-end gap-2">
-            <BackButton />
-            <Button caption="Next" type="submit" />
-          </section>
-        </form>
-      </section>
-    </>
+        <section className="py-4 flex justify-end gap-2">
+          <BackButton />
+          <Button caption="Next" type="submit" />
+        </section>
+      </form>
+    </section>
   );
 }
 

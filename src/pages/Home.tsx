@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
-import { NAVIGATION_MULTI } from "../constants";
+import { MULTI, ROUTES } from "../constants";
 
 function Start() {
   const navigate = useNavigate();
 
   const goToMultiStepForm = () => {
-    navigate(NAVIGATION_MULTI["/multi/"]);
+    navigate(`/${ROUTES.MULTI}/${MULTI.START}`);
   };
 
   return (
